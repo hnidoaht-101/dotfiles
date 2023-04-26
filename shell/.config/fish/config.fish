@@ -18,13 +18,13 @@ abbr -a pr 'gh pr create -t (git show -s --format=%s HEAD) -b (git show -s --for
 complete --command aurman --wraps pacman
 
 if status --is-interactive
-	#if test -d /home/hnidoaht-101/templates/base16-fish
-	#	set fish_function_path $fish_function_path /home/hnidoaht-101/templates/base16-fish/functions
-	#	builtin source /home/hnidoaht-101/templates/base16-fish/conf.d/base16.fish
-	#end
-	#if ! set -q TMUX
-#		exec tmux
-#	end
+	if test -d /home/thaodinh/Software/base16-fish-shell
+		set fish_function_path $fish_function_path /home/thaodinh/Software/templates/base16-fish-shell/functions
+		builtin source /home/thaodinh/Software/templates/base16-fish-shell/conf.d/base16.fish
+	end
+	if ! set -q TMUX
+		exec tmux
+	end
 end
 
 if command -v aurman > /dev/null
@@ -184,10 +184,6 @@ function pvm -d "Run nova/glance commands against the PDOS openstack service"
 	end
 end
 
-# Fish should not add things to clipboard when killing
-# See https://github.com/fish-shell/fish-shell/issues/772
-set FISH_CLIPBOARD_CMD "cat"
-
 function fish_user_key_bindings
 	bind \cz 'fg>/dev/null ^/dev/null'
 	if functions -q fzf_key_bindings
@@ -221,7 +217,7 @@ function fish_greeting
 	echo -e " \\e[1mDisk usage:\\e[0m"
 	echo
 	echo -ne (\
-		df -l -h | grep -E 'dev/(xvda|sd|mapper)' | \
+		df -l -h | grep -E 'dev/(xvda|nvme|sd|mapper)' | \
 		awk '{printf "\\\\t%s\\\\t%4s / %4s  %s\\\\n\n", $6, $3, $2, $5}' | \
 		sed -e 's/^\(.*\([8][5-9]\|[9][0-9]\)%.*\)$/\\\\e[0;31m\1\\\\e[0m/' -e 's/^\(.*\([7][5-9]\|[8][0-4]\)%.*\)$/\\\\e[0;33m\1\\\\e[0m/' | \
 		paste -sd ''\
@@ -274,13 +270,11 @@ function fish_greeting
 		# unimportant, so show rarely
 		set_color cyan
 		# echo "  [project] <description>"
-		echo "	[showr] anxiety is like when video game combat music is playing but you can't find my enemies"
-		echo "	[showr]	somebody at google was just like 'yea, just have someone drive down every road on fucking earth'"
 	end
 	if [ $r -lt 25 ]
 		# back-of-my-mind, so show occasionally
 		set_color green
-		echo "  [project] <description>"
+		# echo "  [project] <description>"
 	end
 	if [ $r -lt 50 ]
 		# upcoming, so prompt regularly
@@ -290,7 +284,7 @@ function fish_greeting
 
 	# urgent, so prompt always
 	set_color red
-	# echo "  [project] <description>"
+	echo "  [project] <description>"
 
 	echo
 
