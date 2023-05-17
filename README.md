@@ -1,2 +1,2 @@
 # dotfiles
-All my configuration... oh maybe Github Codespaces made me do this err
+All my dots configuration (nvim, fish, tmux).
