@@ -2,11 +2,29 @@ return {
   "nvim-lualine/lualine.nvim",
   enabled = true,
   lazy = false,
-  event = { "BufReadPost", "BufNewFile" },
+  event = { "BufReadPost", "BufNewFile", "VeryLazy" },
   config = function()
+    local colors = require('config.colors').colors
     require("lualine").setup {
       options = {
-        theme = "auto", --"gruvbox-material",
+        -- theme = "auto", --"gruvbox-material",
+        theme = {
+          normal = {
+            a = { fg = colors.fg, bg = colors.bg },
+            b = { fg = colors.fg, bg = colors.bg },
+            c = { fg = colors.fg, bg = colors.bg },
+          },
+          insert = { a = { fg = colors.fg, bg = colors.bg }, b = { fg = colors.fg, bg = colors.bg } },
+          visual = { a = { fg = colors.fg, bg = colors.bg }, b = { fg = colors.fg, bg = colors.bg } },
+          command = { a = { fg = colors.fg, bg = colors.bg }, b = { fg = colors.fg, bg = colors.bg } },
+          replace = { a = { fg = colors.fg, bg = colors.bg }, b = { fg = colors.fg, bg = colors.bg } },
+
+          inactive = {
+            a = { bg = colors.fg, fg = colors.bg },
+            b = { bg = colors.fg, fg = colors.bg },
+            c = { bg = colors.fg, fg = colors.bg },
+          },
+        },
         icons_enabled = true,
         section_separators = "",
         component_separators = "",
@@ -31,7 +49,7 @@ return {
         },
       },
       sections = {
-        lualine_a = { "mode" },
+        lualine_a = {},
         lualine_b = { "branch" },
         lualine_c = {
           -- "filename",
@@ -42,9 +60,16 @@ return {
             padding = {
               left = 1, right = 0 }
           },
-          { "filename",                  path = 1,                 symbols = { modified = "  ", readonly = "",
-            unnamed = "" } },
-          { "diagnostics",               sources = { "nvim_lsp" }, symbols = { error = " ", warn = " ", info = " " } },
+          {
+            "filename",
+            path = 1,
+            symbols = {
+              modified = "  ",
+              readonly = "",
+              unnamed = ""
+            }
+          },
+          { "diagnostics", sources = { "nvim_lsp" }, symbols = { error = " ", warn = " ", info = " " } },
         },
         lualine_x = { "encoding" },
         lualine_y = { "progress" },

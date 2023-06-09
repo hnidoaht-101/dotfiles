@@ -7,7 +7,11 @@ map("n", "<C-d>", "<C-d>zz", opts)
 map("n", "<C-u>", "<C-u>zz", opts)
 map("v", "J", ":m '>+1<CR>gv=gv", opts)
 map("v", "K", ":m '<-2<CR>gv=gv", opts)
-map("n", "<leader><leader>", ":Telescope buffers<CR>", opts)
+-- map("n", "<leader><leader>", ":Telescope buffers<CR>", opts)
+
+-- Fast saving
+map("n", "<Leader>w", ":write!<CR>", opts)
+map("n", "<Leader>q", ":q!<CR>", opts)
 
 -- Remap for dealing with visual line wraps
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
@@ -21,10 +25,29 @@ map("v", ">", ">gv")
 map("v", "p", '"_dp')
 map("v", "P", '"_dP')
 
--- Fast saving
-vim.keymap.set('n', '<Leader>w', ':write!<CR>')
-vim.keymap.set('n', '<Leader>q', ':q!<CR>', { silent = true })
+-- copy everything between { and } including the brackets
+-- p puts text after the cursor,
+-- P puts text before the cursor.
+map("n", "YY", "va{Vy", opts)
 
 -- Exit on jj and jk
-vim.keymap.set('i', 'jj', '<ESC>')
-vim.keymap.set('i', 'jk', '<ESC>')
+-- map("n", "j", "gj", opts)
+-- map("n", "k", "gk", opts)
+
+-- Exit on jj and jk
+map("i", "jj", "<ESC>", opts)
+map("i", "jk", "<ESC>", opts)
+
+-- Fast saving
+map("n", "<Leader>w", ":write!<CR>", opts)
+map("n", "<Leader>q", ":q!<CR>", opts)
+
+-- Navigate buffers
+map("n", "<S-l>", ":bnext<CR>", opts)
+map("n", "<S-h>", ":bprevious<CR>", opts)
+
+-- Map enter to ciw in normal mode
+map("n", "<CR>", "ciw", opts)
+
+-- map ; to resume last search
+map("n", ";", "<cmd>lua require('telescope.builtin').resume(require('telescope.themes').get_dropdown({}))<cr>", opts)
