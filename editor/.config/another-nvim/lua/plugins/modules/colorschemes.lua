@@ -39,34 +39,6 @@ return {
             mantle = "#191C1D",
             crust = "#151819",
           },
-          latte = {
-            rosewater = "#c14a4a",
-            flamingo = "#c14a4a",
-            pink = "#945e80",
-            mauve = "#945e80",
-            red = "#c14a4a",
-            maroon = "#c14a4a",
-            peach = "#c35e0a",
-            yellow = "#a96b2c",
-            green = "#6c782e",
-            teal = "#4c7a5d",
-            sky = "#4c7a5d",
-            sapphire = "#4c7a5d",
-            blue = "#45707a",
-            lavender = "#45707a",
-            text = "#654735",
-            subtext1 = "#7b5d44",
-            subtext0 = "#8f6f56",
-            overlay2 = "#a28368",
-            overlay1 = "#b6977a",
-            overlay0 = "#c9aa8c",
-            surface2 = "#A79C86",
-            surface1 = "#C9C19F",
-            surface0 = "#DFD6B1",
-            base = "#fbf1c7",
-            mantle = "#F3EAC1",
-            crust = "#E7DEB7",
-          },
         },
         styles = {
           comments = { "italic" },
@@ -92,23 +64,26 @@ return {
             CursorLineNr = { fg = colors.surface2 },
             Pmenu = { bg = colors.crust, fg = "" },
             PmenuSel = { bg = colors.surface0, fg = "" },
-            TelescopeSelection = { bg = colors.surface0 },
-            TelescopePromptCounter = { fg = colors.mauve },
-            TelescopePromptPrefix = { bg = colors.surface0 },
-            TelescopePromptNormal = { bg = colors.surface0 },
-            TelescopeResultsNormal = { bg = colors.mantle },
-            TelescopePreviewNormal = { bg = colors.crust },
-            TelescopePromptBorder = { bg = colors.surface0, fg = colors.surface0 },
-            TelescopeResultsBorder = { bg = colors.mantle, fg = colors.mantle },
-            TelescopePreviewBorder = { bg = colors.crust, fg = colors.crust },
-            TelescopePromptTitle = { fg = colors.surface0, bg = colors.surface0 },
-            TelescopeResultsTitle = { fg = colors.mantle, bg = colors.mantle },
-            TelescopePreviewTitle = { fg = colors.crust, bg = colors.crust },
+            -- TelescopeSelection = { bg = colors.surface0 },
+            -- TelescopePromptCounter = { fg = colors.mauve },
+            -- TelescopePromptPrefix = { bg = colors.surface0 },
+            -- TelescopePromptNormal = { bg = colors.surface0 },
+            -- TelescopeResultsNormal = { bg = colors.mantle },
+            -- TelescopePreviewNormal = { bg = colors.crust },
+            -- TelescopePromptBorder = { bg = colors.surface0, fg = colors.surface0 },
+            -- TelescopeResultsBorder = { bg = colors.mantle, fg = colors.mantle },
+            -- TelescopePreviewBorder = { bg = colors.crust, fg = colors.crust },
+            -- TelescopePromptTitle = { fg = colors.surface0, bg = colors.surface0 },
+            -- TelescopeResultsTitle = { fg = colors.mantle, bg = colors.mantle },
+            -- TelescopePreviewTitle = { fg = colors.crust, bg = colors.crust },
             IndentBlanklineChar = { fg = colors.surface0 },
             IndentBlanklineContextChar = { fg = colors.surface2 },
             GitSignsChange = { fg = colors.peach },
             NvimTreeIndentMarker = { link = "IndentBlanklineChar" },
             NvimTreeExecFile = { fg = colors.text },
+            IlluminatedWordText = { bg = colors.surface1, fg = "" },
+            IlluminatedWordRead = { bg = colors.surface1, fg = "" },
+            IlluminatedWordWrite = { bg = colors.surface1, fg = "" },
           }
         end,
       })
@@ -129,12 +104,14 @@ return {
   },
   {
     "ChristianChiarulli/onedark.nvim",
+    enabled = false,
     config = function()
       -- vim.cmd.colorscheme 'onedark'
     end,
   },
   {
     'projekt0n/github-nvim-theme',
+    enabled = false,
     lazy = false,    -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
@@ -147,6 +124,7 @@ return {
   },
   {
     'sainnhe/everforest',
+    enabled = false,
     priority = 1000,
     config = function()
       -- vim.o.background = 'dark'
@@ -158,6 +136,7 @@ return {
   },
   {
     'morhetz/gruvbox',
+    enabled = false,
     priority = 1000,
     config = function()
       -- vim.o.background = 'dark'
