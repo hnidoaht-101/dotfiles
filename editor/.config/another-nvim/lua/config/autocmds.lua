@@ -63,12 +63,12 @@ api.nvim_create_autocmd(
 -- Enable spell checking for certain file types
 api.nvim_create_autocmd(
   { "BufRead", "BufNewFile" },
-  -- { pattern = { "*.txt", "*.md", "*.tex" }, command = [[setlocal spell<cr> setlocal spelllang=en<cr>]] }
+  -- { pattern = { "*.txt", "*.md", "*.tex" }, command = [[setlocal spell<cr> setlocal spelllang=en,de<cr>]] }
   {
     pattern = { "*.txt", "*.md", "*.tex" },
     callback = function()
       vim.opt.spell = true
-      vim.opt.spelllang = "en
+      vim.opt.spelllang = "en,de"
     end,
   }
 )
@@ -82,12 +82,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
--- change the background color of floating windows and borders.
+
 vim.api.nvim_create_autocmd('ColorScheme', {
   callback = function()
+    -- change the background color of floating windows and borders.
     vim.cmd('highlight NormalFloat guibg=none guifg=none')
     vim.cmd('highlight FloatBorder guifg=' .. colors.fg .. ' guibg=none')
     vim.cmd('highlight NormalNC guibg=none guifg=none')
+
+    -- change neotree background colors
+    -- Default: NeoTreeNormal  xxx ctermfg=223 ctermbg=232 guifg=#d4be98 guibg=#141617
+    -- vim.cmd('highlight NeoTreeNormal guibg=#1d2021')
+    ---- vim.cmd('highlight NeoTreeFloatNormal guifg=#1d2021 guibg=#141617')
+    -- vim.cmd('highlight NeoTreeFloatBorder guifg=#958272 guibg=#1d2021')
+    -- vim.cmd('highlight NeoTreeEndOfBuffer guibg=#1d2021') -- 1d2021
   end,
 })
 
@@ -117,3 +125,16 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- resize neovim split when terminal is resized
 vim.api.nvim_command('autocmd VimResized * wincmd =')
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "kanagawa",
+  callback = function()
+    if vim.o.background == "light" then
+      vim.fn.system("kitty +kitten themes Kanagawa_light")
+    elseif vim.o.background == "dark" then
+      vim.fn.system("kitty +kitten themes Kanagawa_dragon")
+    else
+      vim.fn.system("kitty +kitten themes Kanagawa")
+    end
+  end,
+})
